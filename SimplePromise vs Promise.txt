@@ -1,0 +1,315 @@
+---------------------------------------------------1st----------------------------------------------------------
+
+new SimplePromise((resolve,reject)=>{
+    resolve(1);
+})
+.then(()=>{console.log("1st Then")})
+.catch(()=>{console.log("1st Catch")})
+.then(()=>{console.log("2nd Then")})
+.catch(()=>{console.log("2nd Catch")})
+.then(()=>{console.log("3rd Then")})
+.catch(()=>{console.log("3rd Catch")})
+.then(()=>{console.log("4th Then")})
+.catch(()=>{console.log("4th Catch")});
+
+Output : 
+1st Then
+2nd Then
+3rd Then
+4th Then
+
+new Promise((resolve,reject)=>{
+    resolve(1);
+})
+.then(()=>{console.log("1st Then")})
+.catch(()=>{console.log("1st Catch")})
+.then(()=>{console.log("2nd Then")})
+.catch(()=>{console.log("2nd Catch")})
+.then(()=>{console.log("3rd Then")})
+.catch(()=>{console.log("3rd Catch")})
+.then(()=>{console.log("4th Then")})
+.catch(()=>{console.log("4th Catch")});
+
+Output : 
+1st Then
+2nd Then
+3rd Then
+4th Then
+
+----------------------------------------------------2nd------------------------------------------------------------
+
+new SimplePromise((resolve,reject)=>{
+    reject(0);
+})
+.then(()=>{console.log("1st Then")})
+.catch(()=>{console.log("1st Catch")})
+.then(()=>{console.log("2nd Then")})
+.catch(()=>{console.log("2nd Catch")})
+.then(()=>{console.log("3rd Then")})
+.catch(()=>{console.log("3rd Catch")})
+.then(()=>{console.log("4th Then")})
+.catch(()=>{console.log("4th Catch")});
+
+Output : 
+1st Catch
+2nd Then
+3rd Then
+4th Then
+
+new Promise((resolve,reject)=>{
+   reject(0);
+})
+.then(()=>{console.log("1st Then")})
+.catch(()=>{console.log("1st Catch")})
+.then(()=>{console.log("2nd Then")})
+.catch(()=>{console.log("2nd Catch")})
+.then(()=>{console.log("3rd Then")})
+.catch(()=>{console.log("3rd Catch")})
+.then(()=>{console.log("4th Then")})
+.catch(()=>{console.log("4th Catch")});
+
+Output : 
+1st Catch
+2nd Then
+3rd Then
+4th Then
+
+----------------------------------------------------3rd---------------------------------------------------
+
+new SimplePromise((resolve,reject)=>{
+    reject(0);
+})
+.then(()=>{console.log("1st Then")})
+.catch(()=>{console.log("1st Catch"); throw err})
+.catch(()=>{console.log("2nd Catch"); throw err})
+.catch(()=>{console.log("3rd Catch"); throw err})
+.then(()=>{console.log("4th Then")})
+.catch(()=>{console.log("4th Catch")});
+
+Output : 
+1st Catch
+2nd Catch
+3rd Catch
+4th Catch
+
+
+new Promise((resolve,reject)=>{
+   reject(0);
+})
+.then(()=>{console.log("1st Then")})
+.catch(()=>{console.log("1st Catch"); throw err})
+.catch(()=>{console.log("2nd Catch"); throw err})
+.catch(()=>{console.log("3rd Catch"); throw err})
+.then(()=>{console.log("4th Then")})
+.catch(()=>{console.log("4th Catch")});
+
+Output : 
+1st Catch
+2nd Catch
+3rd Catch
+4th Catch
+
+----------------------------------------------------4th---------------------------------------------------
+
+new SimplePromise((resolve,reject)=>{
+    resolve(0);
+})
+.then(()=>{console.log("1st Then")})
+.catch(()=>{console.log("1st Catch")})
+.catch(()=>{console.log("2nd Catch")})
+.catch(()=>{console.log("3rd Catch")})
+.then(()=>{console.log("4th Then")})
+.catch(()=>{console.log("4th Catch")});
+
+Output : 
+1st Then
+4th Then
+
+new Promise((resolve,reject)=>{
+    resolve(0);
+})
+.then(()=>{console.log("1st Then")})
+.catch(()=>{console.log("1st Catch")})
+.catch(()=>{console.log("2nd Catch")})
+.catch(()=>{console.log("3rd Catch")})
+.then(()=>{console.log("4th Then")})
+.catch(()=>{console.log("4th Catch")});
+
+Output : 
+1st Then
+4th Then
+
+----------------------------------------------------5th---------------------------------------------------
+
+new SimplePromise((resolve,reject)=>{
+    resolve(10);
+})
+.then((val) => val)
+.catch(()=>{console.log("1st Catch")})
+.then((val)=>{console.log(val*10)})
+.catch(()=>{console.log("2th Catch")});
+
+Output : 
+100
+
+new Promise((resolve,reject)=>{
+    resolve(10);
+})
+.then((val) => val)
+.catch(()=>{console.log("1st Catch")})
+.then((val)=>{console.log(val*10)})
+.catch(()=>{console.log("2th Catch")});
+
+Output : 
+100
+
+----------------------------------------------------6th---------------------------------------------------
+
+new SimplePromise((resolve,reject)=>{
+    resolve(10);
+})
+.then((val) => {console.log(val);
+                return val*2
+                })
+.then((val) => {console.log(val);
+                return val*2
+                })
+.then((val) => {console.log(val);
+                return val*2
+                })
+.then((val) => {console.log(val);
+                return val*2
+                })
+.then((val)=>{console.log(val)});
+
+Output :
+10
+20
+40
+80
+160
+
+new Promise((resolve,reject)=>{
+    resolve(10);
+})
+.then((val) => {console.log(val);
+                return val*2
+                })
+.then((val) => {console.log(val);
+                return val*2
+                })
+.then((val) => {console.log(val);
+                return val*2
+                })
+.then((val) => {console.log(val);
+                return val*2
+                })
+.then((val)=>{console.log(val)});
+
+Output :
+10
+20
+40
+80
+160
+
+----------------------------------------------------7th---------------------------------------------------
+
+new SimplePromise((resolve,reject)=>{
+    resolve(9);
+})
+.then((val) => {throw val})
+.catch((val)=>{console.log(val**val)})
+
+Output : 387420489
+
+new Promise((resolve,reject)=>{
+    resolve(9);
+})
+.then((val) => {throw val})
+.catch((val)=>{console.log(val**val)})
+
+Output : 387420489
+
+----------------------------------------------------8th---------------------------------------------------
+
+new SimplePromise((resolve,reject)=>{
+    resolve(9);
+})
+.then((val) => val + 10)
+.then((val) => val - 3)
+.then((val) => val * 3)
+.then((val) => val / 3)
+.then((val) =>console.log(val))
+
+Output : 16
+
+new Promise((resolve,reject)=>{
+    resolve(9);
+})
+.then((val) => val + 10)
+.then((val) => val - 3)
+.then((val) => val * 3)
+.then((val) => val / 3)
+.then((val) =>console.log(val))
+
+Output : 16
+
+----------------------------------------------------9th---------------------------------------------------
+
+new SimplePromise((resolve,reject)=>{
+    resolve(99);
+})
+.catch(()=>{console.log("1st")})
+.catch(()=>{console.log("2nd")})
+.catch(()=>{console.log("3rd")})
+.catch(()=>{console.log("4th")})
+.catch(()=>{console.log("5th")})
+.catch(()=>{console.log("6th")})
+.catch(()=>{console.log("7th")})
+.then((val) => console.log(val))
+
+Output : 99
+
+new Promise((resolve,reject)=>{
+    resolve(99);
+})
+.catch(()=>{console.log("1st")})
+.catch(()=>{console.log("2nd")})
+.catch(()=>{console.log("3rd")})
+.catch(()=>{console.log("4th")})
+.catch(()=>{console.log("5th")})
+.catch(()=>{console.log("6th")})
+.catch(()=>{console.log("7th")})
+.then((val) => console.log(val))
+
+Output : 99
+
+---------------------------------------------------10th---------------------------------------------------
+
+new SimplePromise((resolve,reject)=>{
+    reject(99);
+})
+.catch(()=>{console.log("1st")})
+.catch(()=>{console.log("2nd")})
+.catch(()=>{console.log("3rd")})
+.then((val) => console.log(val))
+
+Output :
+1st
+undefined
+
+new Promise((resolve,reject)=>{
+    reject(99);
+})
+.catch(()=>{console.log("1st")})
+.catch(()=>{console.log("2nd")})
+.catch(()=>{console.log("3rd")})
+.then((val) => console.log(val))
+
+Output :
+1st
+undefined
+
+
+
